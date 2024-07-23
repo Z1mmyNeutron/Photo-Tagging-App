@@ -1,0 +1,163 @@
+<div class="whole-website-container">
+  <input [(ngModel)]="FieldUrl" />
+
+  <div class="field-photo-container" onselectstart="return false">
+    <img [src]="FieldUrl" alt="Field Photo" class="field-photo" />
+    <div
+      class="object-box"
+      style="background-color: rgba(125, 125, 125, 0.25)"
+      [style.left.px]="0"
+      [style.top.px]="0"
+      [style.width.px]="FieldObject.FieldSizeX"
+      [style.height.px]="FieldObject.FieldSizeY"
+    >
+      {{ FieldObject.ObjectType }}
+    </div>
+
+    <div
+      *ngFor="let object of Objects"
+      class="object-box"
+      [ngClass]="{ 'tree-box': isTree(object), 'barn-box': isBarn(object) }"
+      [style.left.px]="object.ObjectStartX"
+      [style.top.px]="object.ObjectStartY"
+      [style.width.px]="object.ObjectEndX - object.ObjectStartX"
+      [style.height.px]="object.ObjectEndY - object.ObjectStartY"
+      (mousedown)="onDragStart($event, object)"
+      (document:mouseup)="onDragEnd($event, object)"
+      (document:mousemove)="onDrag($event, object)"
+    >
+      {{ object.ObjectType }}
+    </div>
+  </div>
+
+  <br />
+  <br />
+
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10vh;
+      margin: 0;
+      font-family: 'Times New Roman', Times, serif;
+    "
+  >
+    <table
+      style="margin: 0 auto; text-align: center; border-collapse: collapse"
+    >
+      <tr>
+        <th>Field Size X</th>
+        <th>Field Size Y</th>
+        <th>Tag Count</th>
+      </tr>
+      <tr>
+        <td>
+          <input type="number" [(ngModel)]="FieldObject.FieldSizeX" />
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="FieldObject.FieldSizeY" />
+        </td>
+        <td>
+          {{ Objects.length }}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th *ngFor="let item of inputs">
+          {{ item.field }}
+        </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let object of Objects; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td *ngFor="let field of inputs">
+          <ng-template [ngIf]="field.display === 'input'">
+            <input
+              [(ngModel)]="object[field.field]"
+              [type]="field.type"
+              style="padding: 2%"
+            />
+          </ng-template>
+          <ng-template [ngIf]="field.display === 'select'">
+            <select [(ngModel)]="object[field.field]" style="padding: 1%">
+              <option
+                *ngFor="let option of field.options"
+                [value]="option.text"
+                [ngStyle]="{ 'background-color': option.color }"
+              >
+                {{ option.text }}
+              </option>
+            </select>
+          </ng-template>
+        </td>
+        <td>
+          <button type="button" (click)="deleteObject(i)">X</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Add new ObjectType option -->
+  <table style="margin-top: 20px">
+    <tr>
+      <td>
+        <label>Add new ObjectType option:</label>
+      </td>
+      <td>
+        <input [(ngModel)]="newOption" placeholder="Enter new option" />
+      </td>
+      <td>
+        <button (click)="addOption()">Add</button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th *ngFor="let item of inputs">
+          {{ item.field }}
+        </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let object of Objects; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td *ngFor="let field of inputs">
+          <ng-template [ngIf]="field.display === 'input'">
+            <input
+              [(ngModel)]="object[field.field]"
+              [type]="field.type"
+              style="padding: 2%"
+            />
+          </ng-template>
+          <ng-template [ngIf]="field.display === 'select'">
+            <select [(ngModel)]="object[field.field]" style="padding: 1%">
+              <option *ngFor="let option of field.options" [value]="option">
+                {{ option }}
+              </option>
+            </select>
+          </ng-template>
+        </td>
+        <td>
+          <button type="button" (click)="deleteObject(i)">X</button>
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  <!-- Input field and button to add new options to the dropdown -->
+
+  <button type="button" (click)="addObject()">Add</button>
+  <button type="button" (click)="saveField()">Save</button>
+</div>

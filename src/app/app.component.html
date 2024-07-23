@@ -1,0 +1,12 @@
+<body>
+  <h1>{{ title }}</h1>
+  <br />
+  <nav>
+    <a *ngFor="let item of navbar" [routerLink]="item.routerLink">{{
+      item.label
+    }}</a>
+  </nav>
+  <br />
+  <br />
+  <router-outlet></router-outlet>
+</body>

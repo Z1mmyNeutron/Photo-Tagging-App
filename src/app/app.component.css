@@ -1,0 +1,38 @@
+/* AppComponent's private CSS styles */
+body{
+ background-color: white;
+ font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(32, 94, 121);
+}
+h1 {
+  background-color: white;
+  color: rgb(32, 94, 121);
+  margin-bottom: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav a {
+  padding: 1rem;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #e8e8e8;
+  color: rgb(32, 94, 121);
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+nav a:hover {
+  color: white;
+  background-color: #42545C;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav a.active {
+  background-color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
