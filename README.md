@@ -1,4 +1,4 @@
-# StradosApp
+# Photo-Binding-App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
 
@@ -26,23 +26,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-## Chrissie to do:
-
-1. fix errors on the bounding box it gets weird if i try to drag stuff out of bounds
-2. Make all boxes in the table the same size
-3. add comments everywhere
-
-## Strados Notes
-
 1. Changed mock API start/endx to reflect numbers since they are coordinate points
 2. Added start/endY in mock data to correct missing variables
 3. Fix mock API start/End so they appear on the horizon above their respective images
 4. Changed Mock api FieldStartX to reflect true width span of photo to controll bounds
 5. Changed Mock api FieldStartY to reflect true height span of photo to controll bounds
-6. added a field box with drag functionalities so when a new object is added to the field it renders with a red or green box that the user is able to control
+6. Added a field box with drag functionalities so when a new object is added to the field it renders with a red or green box that the user is able to control
 7. Reflected changing inputs based on draggable boxes in the control types
-8. loaded in photo from api url, can change to be any photo with the box containing the url on the front end
-9. created a table to store all of the object properties after making an interface and threading it through the html -> is updatable regarding the add and delete boxes
+8. Loaded in photo from api url, can change to be any photo with the box containing the url on the front end
+9. Created a table to store all of the object properties after making an interface and threading it through the html -> is updatable regarding the add and delete boxes
 10. Created a navbar, currently it only holds one value for the page website. It is set up to reflect easy changes upon the event we need more pages
 11. Purposely made a broken save box to be able to reflect error and error handling will not ever be able to post actual data without a server
 12. Wrote basic testing in Jest to configure the field component and trigger inital data binding:
